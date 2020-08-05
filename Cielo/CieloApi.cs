@@ -1,4 +1,5 @@
 ﻿using Cielo.Helper;
+using Cielo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -232,6 +233,14 @@ namespace Cielo
             var response = await CreateRequestAsync(Environment.GetQueryUrl($"/1/RecurrentPayment/{recurrentPaymentId}"), Method.GET, headers);
 
             return await GetResponseAsync<ReturnRecurrentPayment>(response);
+        }
+
+        public async Task<BinModel> ConsultBin(Guid requestId,string bin)
+        {
+            var headers = GetHeaders(requestId);
+            var response = await CreateRequestAsync(Environment.GetQueryUrl($"/1/CardBin/{bin}"), Method.GET, headers);
+
+            return await GetResponseAsync<BinModel>(response);
         }
 
         /// <summary>
